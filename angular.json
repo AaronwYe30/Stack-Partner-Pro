@@ -42,7 +42,7 @@
               ],
               "outputHashing": "all",
               "baseHref": "/Stack-Partner-Pro/",
-              "outputPath": "dist/traveler-angular-app",
+              "outputPath": "dist/stack-partner-pro",
               "index": "src/index.html"
             },
             "development": {
