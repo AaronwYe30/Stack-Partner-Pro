@@ -41,7 +41,9 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/Stack-Partner-Pro/"
+              "baseHref": "/Stack-Partner-Pro/",
+              "outputPath": "dist/traveler-angular-app",
+              "index": "src/index.html"
             },
             "development": {
               "optimization": false,
