@@ -1,40 +1,24 @@
-name: Deploy Angular App to GitHub Pages
+# filepath: .github/workflows/deploy.yml
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
+      - master
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest  # The environment in which to run the job
-
+  build-and-deploy:
+    runs-on: ubuntu-latest
     steps:
-      # Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Set up Node.js (v20.19 or higher)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '20.19'  # Set Node.js to v20.19 or later
-
-      # Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Install Angular CLI globally
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli@20.1.6  # Install Angular CLI globally to use ng commands
-
-      # Build the Angular project
-      - name: Build the Angular project
-        run: ng build --configuration production --output-path=docs
-
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
+          node-version: '20'
+      - run: npm ci
+      - run: npm run build -- --base-href /Traveler-App-Angular/
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # Target branch for GitHub Pages
-          folder: docs      # Folder where the build output is stored
-          token: ${{ secrets.GH_TOKEN }}  # Use the secret token for authentication
+          branch: gh-pages
+          folder: dist/traveler-angular-app/browser
