@@ -3,7 +3,6 @@ name: Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - master 
 
 jobs:
   deploy:
@@ -38,3 +37,4 @@ jobs:
         with:
           branch: gh-pages  # Target branch for GitHub Pages
           folder: docs      # Folder where the build output is stored
+          token: ${{ secrets.GH_TOKEN }}  # Use the secret token for authentication
