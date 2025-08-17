@@ -1,24 +1,41 @@
-name: Deploy to GitHub Pages
+name: Deploy Angular App to GitHub Pages
 
 on:
   push:
     branches:
+      - main
       - master
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest  # The environment in which to run the job
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run build -- --base-href /Stack_Partner_Pro/
-      - name: Deploy
+          node-version: '16'  # Ensure it matches your Node.js version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Install Angular CLI globally
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@
+
+      # Build the Angular project
+      - name: Build the Angular project
+        run: ng build --configuration production --output-path=docs
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: dist/stack-partner-pro/browser
-          token: ${{ secrets.GH_TOKEN }}  # This should be your GitHub Secret with the PAT
+          branch: gh-pages  # Target branch for GitHub Pages
+          folder: docs      # Folder where the build output is stored
