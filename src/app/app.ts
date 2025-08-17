@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule], // <-- use RouterModule
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrls: ['./app.css'] // <-- fixed
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('stack-partner-pro');
