@@ -40,7 +40,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/Stack-Partner-Pro/"
             },
             "development": {
               "optimization": false,
