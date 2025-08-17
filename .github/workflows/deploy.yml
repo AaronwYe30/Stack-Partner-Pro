@@ -16,9 +16,9 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
-      - run: npm run build -- --base-href /Traveler-App-Angular/
+      - run: npm run build -- --base-href /Stack_Partner_Pro/
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist/traveler-angular-app/browser
+          folder: dist/stack-partner-pro/browser
