@@ -3,7 +3,7 @@ name: Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - main  # or master, depending on your default branch
+      - main
       - master
 
 jobs:
@@ -19,11 +19,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Make sure to use the version compatible with your project
+          node-version: '16'  # Ensure it matches your Node.js version
 
       # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      # Install Angular CLI globally
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@
 
       # Build the Angular project
       - name: Build the Angular project
